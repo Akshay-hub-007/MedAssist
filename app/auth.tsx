@@ -22,7 +22,7 @@ const AuthScreen = () => {
     setBioMetrics(hasHardWare && isEnrolled)
 
   }
-  
+
   const authenticate = async () => {
     setError(null)
 
@@ -38,12 +38,11 @@ const AuthScreen = () => {
       disableDeviceFallback: false
     })
     if (auth.success) {
-      router.replace('/')
+      router.replace('/home')
     } else {
       setError("Authenticaton Failed: Please Try again")
     }
   }
-  // authenticate()
   return (
     <LinearGradient colors={["#4CAF50", "#2E7D32"]} style={styles.container}>
       <View style={styles.content}>
