@@ -94,6 +94,11 @@ const Home = () => {
                             <Ionicons name='notifications-outline' size={24} color={'whitw'} />
                         </TouchableOpacity>
                     </View>
+                    <CircularProgress
+                        progress={50}
+                        totalDoses={10}
+                        completedDoses={5}
+                    />
                 </View>
             </LinearGradient>
         </ScrollView>
