@@ -1,32 +1,32 @@
-import { useState, useEffect, useRef, useCallback } from "react";
-import {
-  View,
-  Text,
-  StyleSheet,
-  ScrollView,
-  TouchableOpacity,
-  Dimensions,
-  Animated,
-  Modal,
-  Alert,
-  AppState,
-} from "react-native";
 import { Ionicons } from "@expo/vector-icons";
-import { Link, useRouter } from "expo-router";
-import { LinearGradient } from "expo-linear-gradient";
-import Svg, { Circle } from "react-native-svg";
-import {
-  getMedications,
-  Medication,
-  getTodaysDoses,
-  recordDose,
-  DoseHistory,
-} from "../utils/storage";
 import { useFocusEffect } from "@react-navigation/native";
+import { LinearGradient } from "expo-linear-gradient";
+import { Link, useRouter } from "expo-router";
+import { useCallback, useEffect, useRef, useState } from "react";
+import {
+  Alert,
+  Animated,
+  AppState,
+  Dimensions,
+  Modal,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
+import Svg, { Circle } from "react-native-svg";
 import {
   registerForPushNotificationsAsync,
   scheduleMedicationReminder,
 } from "../utils/notifications";
+import {
+  DoseHistory,
+  getMedications,
+  getTodaysDoses,
+  Medication,
+  recordDose,
+} from "../utils/storage";
 
 const { width } = Dimensions.get("window");
 
@@ -180,11 +180,7 @@ export default function HomeScreen() {
 
   const setupNotifications = async () => {
     try {
-      const token = await registerForPushNotificationsAsync();
-      if (!token) {
-        console.log("Failed to get push notification token");
-        return;
-      }
+      await registerForPushNotificationsAsync();
 
       // Schedule reminders for all medications
       const medications = await getMedications();
